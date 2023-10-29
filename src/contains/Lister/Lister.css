@@ -1,0 +1,8 @@
+.Lister {
+    text-align: center;
+}
+
+.ListerComponent {
+    display: flex;
+    justify-content: space-around;
+}
