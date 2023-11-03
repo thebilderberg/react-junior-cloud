@@ -1,11 +1,11 @@
 import "./Lister.css";
-import ListerLomponent from "./ListerComponent/ListerLomponent";
+import ListerComponent from "./ListerComponent/ListerComponent";
 import { List, Typography } from 'antd';
 
 function Lister({data}){
 
     let ListerComponentFinal = data.economic.listForLister.map((elem)=>
-        <ListerLomponent {...elem} />
+        <ListerComponent {...elem} />
     );
 
     return(
