@@ -1,29 +1,29 @@
-import styles from "./ListerComponent.module.css";
-import { DeleteOutlined, DollarOutlined } from '@ant-design/icons';
-import {useEffect, useState} from "react";
-import classNames from "classnames";
+import "./ListerComponent.css";
+import { DeleteOutlined, DollarOutlined, StarOutlined } from '@ant-design/icons';
 
-function ListerComponent({ name, salary, status, id}){
+function ListerComponent(props) {
+        const { name, salary, onDelete, onSalarySwitch, onStarSwitch } = props
+        const {status, star} = props
+        let classes = "ListerComponent";
+        let starIconClass = "incognitoStarIconClass"
 
-    let [clicked, setClicked] = useState(false);
-    useEffect(()=>{
-        if (status) {setClicked(status)}
-    });
+        if (status) {
+            classes += " dollar";
+        }
 
-    return(
-        <div className={classNames(styles.ListerComponent, {
-            [styles.NewListerComponent]: clicked === true
-        })}>
-            <div>{name}</div>
-            <div>${salary}</div>
-            <div><DollarOutlined onClick={
-                ()=>{
-                    setClicked(!clicked);
-                }
-            }/></div>
-            <div><DeleteOutlined /></div>
-        </div>
-    );
-}
+        if (star) {
+            starIconClass = "offIncognitoStarIconClass";
+        }
+
+        return(
+            <div className={classes}>
+                <div onClick={()=>onStarSwitch()}>{name}</div>
+                <div>${salary}</div>
+                <div><DollarOutlined onClick={()=>onSalarySwitch()} /></div>
+                <div><DeleteOutlined onClick={()=>onDelete()}/></div>
+                <div className={starIconClass}><StarOutlined /></div>
+            </div>
+        );
+    }
 
 export default ListerComponent;

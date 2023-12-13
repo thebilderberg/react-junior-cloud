@@ -1,15 +1,25 @@
-import "./Lister.css";
+import style from "./Lister.module.css";
 import ListerComponent from "./ListerComponent/ListerComponent";
 import { List, Typography } from 'antd';
 
-function Lister({data}){
+function Lister({data, onDelete, onSalarySwitch, onStarSwitch}){
 
-    let ListerComponentFinal = data.economic.listForLister.map((elem)=>
-        <ListerComponent {...elem} />
-    );
+    let ListerComponentFinal = data.map((elem)=>{
+
+        const {id, ...itemProps} = elem;
+
+        return (
+            <ListerComponent
+                key={id}
+                {...itemProps}
+                onDelete={()=> onDelete(id)}
+                onSalarySwitch={()=> onSalarySwitch(id)}
+                onStarSwitch={()=> onStarSwitch(id)} />
+        )
+    });
 
     return(
-        <div className="Lister">
+        <div className={style.Lister}>
 
             <List
                 bordered

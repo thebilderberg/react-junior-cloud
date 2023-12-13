@@ -1,9 +1,9 @@
-import "./Filter.css";
+import style from "./Filter.module.css";
 import { Radio } from 'antd';
 
 function Filter(){
     return(
-        <div className="Filter">
+        <div className={style.Filter}>
             <Radio.Group>
                 <Radio.Button value="large">Все сотрудники</Radio.Button>
                 <Radio.Button value="default">Выходят на премию</Radio.Button>
