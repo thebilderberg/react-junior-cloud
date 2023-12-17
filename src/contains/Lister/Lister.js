@@ -2,7 +2,7 @@ import style from "./Lister.module.css";
 import ListerComponent from "./ListerComponent/ListerComponent";
 import { List, Typography } from 'antd';
 
-function Lister({data, onDelete, onSalarySwitch, onStarSwitch}){
+function Lister({ data, onDelete, onSwitch }){
 
     let ListerComponentFinal = data.map((elem)=>{
 
@@ -13,8 +13,7 @@ function Lister({data, onDelete, onSalarySwitch, onStarSwitch}){
                 key={id}
                 {...itemProps}
                 onDelete={()=> onDelete(id)}
-                onSalarySwitch={()=> onSalarySwitch(id)}
-                onStarSwitch={()=> onStarSwitch(id)} />
+                onSwitch={(e)=> onSwitch(id, e.currentTarget.getAttribute("switch-option"))} />
         )
     });
 

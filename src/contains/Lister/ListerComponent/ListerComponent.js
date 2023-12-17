@@ -2,7 +2,7 @@ import "./ListerComponent.css";
 import { DeleteOutlined, DollarOutlined, StarOutlined } from '@ant-design/icons';
 
 function ListerComponent(props) {
-        const { name, salary, onDelete, onSalarySwitch, onStarSwitch } = props
+        const { name, salary, onDelete, onSwitch } = props
         const {status, star} = props
         let classes = "ListerComponent";
         let starIconClass = "incognitoStarIconClass"
@@ -17,9 +17,9 @@ function ListerComponent(props) {
 
         return(
             <div className={classes}>
-                <div onClick={()=>onStarSwitch()}>{name}</div>
+                <div onClick={onSwitch} switch-option="star">{name}</div>
                 <div>${salary}</div>
-                <div><DollarOutlined onClick={()=>onSalarySwitch()} /></div>
+                <div><DollarOutlined switch-option="status" onClick={onSwitch}/></div>
                 <div><DeleteOutlined onClick={()=>onDelete()}/></div>
                 <div className={starIconClass}><StarOutlined /></div>
             </div>

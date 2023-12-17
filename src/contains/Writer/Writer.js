@@ -13,30 +13,36 @@ class Writer extends Component {
         }
     }
 
-    onTextForWriter = (e) => {
+    onTextForWriter = (e) => {             // получаем значения польз. ввода
         this.setState({
             [e.target.name] : e.target.value
         })
     }
 
-
     addItem = () => {
         const { name, salary } = this.state;
+        const nameRegExp = /^[а-яА-Яa-zA-Z]{3,}$/;    //рег. выражение с кириллицей и латиницей до 3 символов
         if (name && salary) {
-            this.props.onGiveParams({ name, salary });
-            this.setState({
-                name: "",
-                salary: "",
-                status: false,
-            });
+            if (!nameRegExp.test(name)){              //проверка на ввод именно имени
+                console.log("Введите имя");
+            }
+            else if (isNaN(salary)) {                 //проверка на ввод именно числа
+                console.log("Введите число");
+            }
+            else {
+                this.props.onGiveParams({ name, salary });
+                this.setState({
+                    name: "",
+                    salary: "",
+                });
+            }
         } else {
             // Обработка случая, если поля не заполнены
             console.log("Введите имя и зарплату");
         }
     }
 
-
-
+    //===========================================================render
 
     render(){
         const {name, salary} = this.state
